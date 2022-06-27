@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <!-- 一级路由出口 -->
-    <router-view></router-view>
-  </div>
+  <div>资讯</div>
 </template>
 
 <script>
 export default {
+  name: 'information',
   created () { },
   data () {
     return {}

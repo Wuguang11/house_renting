@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <!-- 一级路由出口 -->
-    <router-view></router-view>
-  </div>
+  <div>登陆</div>
 </template>
 
 <script>
 export default {
+  name: 'login',
   created () { },
   data () {
     return {}
