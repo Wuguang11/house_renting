@@ -1,7 +1,16 @@
 <template>
   <div class="login_container">
     <!-- 头部 -->
-    <van-nav-bar title="账号登陆" left-arrow />
+    <van-nav-bar title="账号登陆">
+      <template #left>
+        <van-icon
+          name="arrow-left"
+          size="18"
+          class="icon"
+          @click="$router.back()"
+        />
+      </template>
+    </van-nav-bar>
     <!-- 中间输入内容 -->
     <van-form @submit="onSubmit">
       <van-field
@@ -51,14 +60,18 @@ export default {
         this.$toast('用户密码必须是5-12位的数字或者字母')
         return
       }
-      // 提交登录信息获得token
-      const res = await login(values)
-      this.$toast.success('登陆成功')
-      // console.log(res.data.body)
-      // 将获得的token存储到本地
-      this.$store.commit('setUser', res.data.body)
-      // 跳转到首页
-      this.$router.push('/layout')
+      try {
+        // 提交登录信息获得token
+        const res = await login(values)
+        this.$toast.success('登陆成功')
+        // console.log(res.data.body)
+        // 将获得的token存储到本地
+        this.$store.commit('setUser', res.data.body)
+        // 跳转到首页
+        this.$router.push('/layout')
+      } catch (error) {
+        this.$toast.fail('登陆失败')
+      }
     }
   },
   computed: {},
@@ -70,45 +83,37 @@ export default {
 
 <style scoped lang='less'>
 /deep/ .van-nav-bar {
-  .van-nav-bar__content {
-    height: 120px !important;
-  }
   line-height: 200px;
   .van-nav-bar__title {
     color: #fff;
   }
   .van-nav-bar__arrow {
     color: #fff !important;
-    font-size: 50px;
-  }
-  .van-nav-bar__left {
-    left: 40px;
-    .van-cell {
-      padding-left: 80px !important;
-    }
+    font-size: 20px;
   }
 }
 .login_ipt {
-  padding-left: 80px;
   display: flex;
   justify-content: center;
   /deep/ .van-field__control {
-    height: 120px !important;
-    font-size: 40px;
+    height: 60px !important;
+    font-size: 18px;
   }
 }
 .login_btn {
-  height: 100px;
   .van-button--block {
-    height: 100px;
-    font-size: 40px;
+    font-size: 20px;
     background-color: #1cb676;
   }
+}
+.icon {
+  color: #fff;
 }
 .login_amount {
   height: 80px;
   width: 100%;
   text-align: center;
-  margin: 0 230px;
+  font-size: 14px;
+  margin: 0 120px;
 }
 </style>

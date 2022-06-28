@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import Vant from 'vant'
 import 'vant/lib/index.less'
+import '@/styles/reset.less'
+import 'amfe-flexible'
+// 字体图标
 Vue.use(Vant)
 Vue.config.productionTip = false
 
