@@ -1,16 +1,7 @@
 <template>
   <div class="login_container">
     <!-- 头部 -->
-    <van-nav-bar title="账号登陆">
-      <template #left>
-        <van-icon
-          name="arrow-left"
-          size="18"
-          class="icon"
-          @click="$router.back()"
-        />
-      </template>
-    </van-nav-bar>
+    <MyTitle :title="title"></MyTitle>
     <!-- 中间输入内容 -->
     <van-form @submit="onSubmit">
       <van-field
@@ -38,13 +29,15 @@
 
 <script>
 import { login } from '@/api/user'
+import MyTitle from '@/components/MyTitle.vue'
 export default {
   name: 'login',
   created () { },
   data () {
     return {
-      username: '',
-      password: ''
+      username: 'itheima',
+      password: '123456',
+      title: '账号登陆'
     }
   },
   methods: {
@@ -61,23 +54,22 @@ export default {
         return
       }
       try {
-        // 提交登录信息获得token
         const res = await login(values)
         this.$toast.success('登陆成功')
-        // console.log(res.data.body)
+        // 提交登录信息获得token
         // 将获得的token存储到本地
         this.$store.commit('setUser', res.data.body)
         // 跳转到首页
         this.$router.push('/layout')
       } catch (error) {
-        this.$toast.fail('登陆失败')
+        this.$toast.fail('您的账号或密码有误,请重新输入')
       }
     }
   },
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: { MyTitle }
 }
 </script>
 

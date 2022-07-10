@@ -8,13 +8,19 @@ const vuexLocal = new VuexPersistence({
 })
 export default new Vuex.Store({
   state: {
-    user: null
+    user: null,
+    nowCityName: '上海',
+    nowId: 0
   },
   getters: {
   },
   mutations: {
     setUser (state, payload) {
       state.user = payload
+    },
+    setCityName (state, payload) {
+      state.nowCityName = payload.name
+      state.nowId = payload.id
     }
   },
   actions: {

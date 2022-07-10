@@ -15,7 +15,10 @@ const routes = [
       { path: 'my', component: () => import('@/views/my') }
     ]
   },
-  { path: '/', component: () => import('@/views/login') }
+  { path: '/', component: () => import('@/views/login') },
+  { path: '/city', component: () => import('@/components/CityList.vue') },
+  { path: '/rent/add', component: () => import('@/views/home/components/AddRent.vue') },
+  { path: '/map', component: () => import('@/views/map') }
 ]
 
 const router = new VueRouter({
